@@ -1,0 +1,11 @@
+[
+    {"id":1, 
+    "title": "Home",
+    "to":"/"},
+    {"id":2, 
+    "title": "Catalog",
+    "to":"/catalog"},
+    {"id":3, 
+    "title": "Favorites",
+    "to":"/favorites"}
+]
