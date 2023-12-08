@@ -8,7 +8,7 @@ export const Root = () => {
       <main className="flex-grow">
         <Outlet />
       </main>
-      <footer className=""></footer>
+      <footer className="h-[100px] shadow-sm shadow-red-500"></footer>
     </div>
   );
 };

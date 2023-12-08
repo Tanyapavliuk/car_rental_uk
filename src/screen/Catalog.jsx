@@ -1,3 +1,5 @@
+import { CatalogList } from "../components";
+
 export const Catalog = () => {
-  return <p>Catalog</p>;
+  return <CatalogList />;
 };

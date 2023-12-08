@@ -3,24 +3,27 @@ import title from "../data/title.json";
 
 export const Home = () => {
   return (
-    <div className="w-full h-[900px] flex justify-start bg-hero bg-no-repeat bg-cover bg-top">
-      <div className="w-full h-full bg-gradient-to-r from-gray-900/90 to-gray-800/50 ">
-        <div className="container mx-auto h-full flex items-center">
-          <h1 className=" text-gray-200 text-8xl font-medium leading-[128px]">
+    <div className="w-full min-h-min flex justify-start bg-hero bg-contain smOnly:bg-cover smOnly:bg-left-bottom bg-no-repeat bg-top">
+      <div className="container mx-auto h-full  flex smOnly:flex-col smOnly:gap-16 md:justify-between pt-16">
+        <div>
+          <h1 className=" text-gray-200 text-5xl font-medium leading-[100px] smOnly:leading-[50px]">
             {title.home}
           </h1>
-          <ul className="flex flex-col gap-4">
-            {servises.map(({ id, title }) => (
-              <li key={id}>
-                <button class="relative overflow-hidden rounded-lg h-12 group hover:animate-pulse hover:shadow-lg hover:scale-105 transition duration-500 before:absolute before:inset-0 before:rounded-lg before:bg-gradient-to-br before:from-pink-400/20 before:via-purple-400 before:to-indigo-400/70">
-                  <span class="relative text-white font-bold px-8 py-8">
-                    {title}
-                  </span>
-                </button>
-              </li>
-            ))}
-          </ul>
+          <h2 className=" text-gray-200 text-xl font-normal">
+            {title.home_subtitle}
+          </h2>
         </div>
+
+        <ul className="md:w-3/6 xl:w-2/6 flex flex-col gap-4">
+          {servises.map(({ id, title }) => (
+            <li
+              key={id}
+              className="cursor-pointer text-white font-semibold bg-gradient-to-r from-red-800 to-black px-7 py-3 rounded-full border border-gray-600 hover:scale-105 duration-300 hover:text-white hover:border-gray-800 hover:from-black hover:to-yellow-700"
+            >
+              {title}
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );
