@@ -3,5 +3,7 @@
     "year":"Year", 
     "type":"Type",
     "fuel":"Fuel Consumption",
-    "engine":"Engine Size"
+    "engine":"Engine Size", 
+    "functionalities":"Accessories and functionalities:", 
+    "rental":"Rental Conditions: "
 }
