@@ -9,7 +9,7 @@ export const counterSlice = createSlice({
   initialState,
   reducers: {
     allCars: (state, action) => {
-      state.cars = [...action.payload];
+      state.cars = [...state.cars, ...action.payload];
     },
   },
 });

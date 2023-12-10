@@ -6,10 +6,10 @@ export const Home = () => {
     <div className="w-full min-h-min flex justify-start bg-hero bg-contain smOnly:bg-cover smOnly:bg-left-bottom bg-no-repeat bg-top">
       <div className="container mx-auto h-full  flex smOnly:flex-col smOnly:gap-16 md:justify-between pt-16">
         <div>
-          <h1 className=" text-gray-200 text-5xl font-medium leading-[100px] smOnly:leading-[50px]">
+          <h1 className=" text-gray-900 text-5xl font-medium leading-[100px] smOnly:leading-[50px]">
             {title.home}
           </h1>
-          <h2 className=" text-gray-200 text-xl font-normal">
+          <h2 className=" text-gray-900 text-xl font-normal">
             {title.home_subtitle}
           </h2>
         </div>

@@ -5,5 +5,9 @@
     "fuel":"Fuel Consumption",
     "engine":"Engine Size", 
     "functionalities":"Accessories and functionalities:", 
-    "rental":"Rental Conditions: "
+    "rental":"Rental Conditions: ", 
+    "mileage":"Mileage:", 
+    "price":"Price:", 
+    "phone":"+380730000000", 
+    "butnTex":"Rental car"
 }

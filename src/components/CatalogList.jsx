@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import data from "../data/catalog.json";
 import { CatalogItem } from "./CatalogItem";
 import { Error } from "./Error";
 import { useSelector, useDispatch } from "react-redux";
 import { allCars } from "../redux/carsSlice";
+import { LoaderCatalog } from "./LoaderCatalog";
+import { fetchCars } from "../helpers/fetchCars";
 
 export const CatalogList = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
+  const [page, setPage] = useState(1);
   const { cars } = useSelector((state) => state.cars);
   const dispatch = useDispatch();
 
@@ -16,10 +18,8 @@ export const CatalogList = () => {
     async function fetchData() {
       try {
         setIsError(false);
-        const response = await axios.get(
-          "https://6573288d192318b7db41a7b3.mockapi.io/api/v1/adverts"
-        );
-        dispatch(allCars(response.data));
+        const data = await fetchCars(page);
+        dispatch(allCars(data));
         setIsLoading(false);
       } catch (er) {
         setIsLoading(false);
@@ -27,24 +27,13 @@ export const CatalogList = () => {
       }
     }
     fetchData();
-  }, []);
+  }, [page]);
 
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto mb-[150px]">
       <ul className="flex flex-wrap gap-x-[29px] gap-y-[50px] mt-6 mb-6">
         {isLoading ? (
-          <li className="w-full h-[800px]">
-            <div className="w-full h-full bg-loading bg-contain bg-no-repeat bg-top ">
-              <div className="h-[70px] flex justify-center items-end">
-                <p className="text-red-700 text-4xl">{data.loading}</p>
-                <div className="flex flex-row gap-2">
-                  <div className="w-2 h-2 rounded-full bg-red-700 animate-bounce"></div>
-                  <div className="w-2 h-2 rounded-full bg-yellow-500 animate-bounce [animation-delay:-.3s]"></div>
-                  <div className="w-2 h-2 rounded-full bg-red-700 animate-bounce [animation-delay:-.5s]"></div>
-                </div>
-              </div>
-            </div>
-          </li>
+          <LoaderCatalog />
         ) : (
           cars.map((el) => (
             <li key={el.id}>
@@ -54,6 +43,16 @@ export const CatalogList = () => {
         )}
         {isError ? <Error /> : null}
       </ul>
+      {!isLoading && cars.length >= 24 ? null : (
+        <div className="flex justify-center mt-[100px]">
+          <button
+            onClick={() => setPage((state) => state + 1)}
+            className="text-blue-500 text-base font-medium manrope underline leading-normal hover:text-blue-700 hover:underline "
+          >
+            Load more
+          </button>
+        </div>
+      )}
     </div>
   );
 };

@@ -1,4 +1,6 @@
-[
+{
+  "data": {
+    "mockData": [
     {
         "id": "9582",
         "year": 2008,
@@ -623,4 +625,26 @@
         "rentalConditions": "Minimum age: 25\nValid driver's license\nSecurity deposit and insurance required",
         "mileage": 4856
     }
-]
+],
+    "count": 24
+  },
+  "routes": [
+    {
+      "id": "get-items",
+      "url": "/items",
+      "method": "GET",
+      "response": {
+        "requestId": "$datatype.uuid",
+        "items": {
+          "$paginate": {
+            "items": "$mockData",
+            "page": "$query.page || 1",
+            "perPage": "$query.perPage || 12"
+          }
+        },
+        "count": "$count",
+        "anyKey": "anyValue"
+      }
+    }
+  ]
+}

@@ -5,7 +5,7 @@ import logo from "../assets/images/logo.webp";
 
 export const Header = () => {
   return (
-    <header className="h-16 shadow-md shadow-red-500 relative">
+    <header className="h-16 bg-slate-950 shadow-md shadow-red-500 relative">
       <div className="container mx-auto h-full flex items-center justify-between">
         <div className="flex gap-3 items-center">
           <Link to="/">
