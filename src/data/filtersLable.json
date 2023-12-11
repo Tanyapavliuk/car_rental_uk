@@ -1,0 +1,8 @@
+{
+    "brand":"Car brand",
+    "hour":"Price/ 1 hour",
+    "mileage":"Сar mileage / km", 
+    "from":"From", 
+    "to":"To", 
+    "dolar":"$"
+}

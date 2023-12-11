@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { CatalogItem } from "./CatalogItem";
 import { Error } from "./Error";
 import { useSelector, useDispatch } from "react-redux";
@@ -12,6 +11,7 @@ export const CatalogList = () => {
   const [isError, setIsError] = useState(false);
   const [page, setPage] = useState(1);
   const { cars } = useSelector((state) => state.cars);
+  const filters = useSelector((state) => state.filters);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -29,13 +29,32 @@ export const CatalogList = () => {
     fetchData();
   }, [page]);
 
+  const updatedArray = () => {
+    let newArrey = cars;
+    if (filters.brand !== "") {
+      newArrey = cars.filter((el) =>
+        el.make.toLowerCase().includes(filters.brand)
+      );
+      return newArrey;
+    } else if (filters.price !== "") {
+      newArrey = cars.filter((el) => {
+        return +el.rentalPrice.substring(1) <= +filters.price;
+      });
+      return newArrey;
+    } else {
+      return newArrey;
+    }
+  };
+
+  console.log(updatedArray());
+
   return (
     <div className="container mx-auto mb-[150px]">
       <ul className="flex flex-wrap gap-x-[29px] gap-y-[50px] mt-6 mb-6">
         {isLoading ? (
           <LoaderCatalog />
         ) : (
-          cars.map((el) => (
+          updatedArray().map((el) => (
             <li key={el.id}>
               <CatalogItem data={el} />
             </li>

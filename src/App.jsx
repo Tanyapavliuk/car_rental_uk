@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import { Catalog, Favorites, Home, Root } from "./screen";
+import { Catalog, Favorites, Home, Root, ErrorPage } from "./screen";
 
 const App = () => {
   return (
@@ -8,8 +8,8 @@ const App = () => {
         <Route index element={<Home />} />
         <Route path="/catalog" element={<Catalog />} />
         <Route path="/favorites" element={<Favorites />} />
+        <Route path="*" element={<ErrorPage />} />
       </Route>
-      <Route path="*" element={<p>Error</p>} />
     </Routes>
   );
 };
