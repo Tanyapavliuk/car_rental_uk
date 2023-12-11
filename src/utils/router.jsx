@@ -3,7 +3,7 @@ import { Home, Catalog, Favorites, Error, Root } from "../screen";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/car_rental_uk",
     element: <Root />,
     children: [
       {
