@@ -1,3 +1,11 @@
+import { CatalogList } from "../components";
+import { Filters } from "../components";
+
 export const Catalog = () => {
-  return <p>Catalog</p>;
+  return (
+    <>
+      <Filters />
+      <CatalogList />
+    </>
+  );
 };

@@ -1,3 +1,5 @@
 import { Header } from "./Header";
+import { CatalogList } from "./CatalogList";
+import { Filters } from "./Filters";
 
-export { Header };
+export { Header, CatalogList, Filters };

@@ -6,6 +6,9 @@ export default {
       sm: "480px",
       md: "768px",
       xl: "1280px",
+      smOnly: { max: "767.98px" },
+      mdOnly: { min: "768px", max: "1279.98px" },
+      notXl: { max: "1279.98px" },
     },
     container: {
       padding: {
@@ -15,9 +18,14 @@ export default {
         xl: "3rem",
       },
     },
+    fontFamily: {
+      manrope: ["Manrope", "sans-serif"],
+    },
     extend: {
       backgroundImage: {
-        hero: "url('./src/assets/main.png')",
+        hero: "url('./src/assets/images/main-bg.webp')",
+        loading: "url('./src/assets/images/loading.webp')",
+        error: "url('./src/assets/images/error.webp')",
       },
     },
   },
