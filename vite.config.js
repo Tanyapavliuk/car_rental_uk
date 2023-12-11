@@ -10,5 +10,5 @@ export default defineConfig({
       components: "/src/components",
     },
   },
-  base: "/car_rental_uk/",
+  base: "/car_rental_uk",
 });
