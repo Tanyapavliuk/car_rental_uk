@@ -7,6 +7,7 @@ export const fetchCars = async (page, limit = 12) => {
   url.searchParams.append("completed", false);
   url.searchParams.append("page", page);
   url.searchParams.append("limit", limit);
+
   try {
     const response = await axios.get(url);
     return response.data;

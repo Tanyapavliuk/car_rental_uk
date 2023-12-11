@@ -1,19 +1,24 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  cars: [],
+  cars: [], // Змінено на об'єкт з властивістю cars
 };
 
-export const counterSlice = createSlice({
+export const carsSlice = createSlice({
   name: "cars",
   initialState,
   reducers: {
     allCars: (state, action) => {
-      state.cars = [...state.cars, ...action.payload];
+      const updatedCars = Array.isArray(action.payload) ? action.payload : [];
+
+      return {
+        ...state,
+        cars: [...state.cars, ...updatedCars],
+      };
     },
   },
 });
 
-export const { allCars } = counterSlice.actions;
+export const { allCars } = carsSlice.actions;
 
-export default counterSlice.reducer;
+export default carsSlice.reducer;

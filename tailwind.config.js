@@ -23,9 +23,9 @@ export default {
     },
     extend: {
       backgroundImage: {
-        hero: "url('./src/assets/images/main-bg.webp')",
-        loading: "url('./src/assets/images/loading.webp')",
-        error: "url('./src/assets/images/error.webp')",
+        main: "url('/src/assets/images/main-bg.webp')",
+        loading: "url('/src/assets/images/loading.webp')",
+        error: "url('/src/assets/images/error.webp')",
       },
     },
   },

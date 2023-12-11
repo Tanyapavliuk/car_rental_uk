@@ -25,8 +25,19 @@ export const CarInfo = ({ id, onClose }) => {
     fetchData();
   }, [id]);
 
+  useEffect(() => {
+    const closeModal = (e) => {
+      if (e.key === "Escape") onClose();
+    };
+    document.addEventListener("keydown", closeModal);
+    return () => document.removeEventListener("keydown", closeModal);
+  }, []);
+
   return (
-    <div className="fixed w-screen h-screen top-0 bg-neutral-900 bg-opacity-50 flex justify-center items-center">
+    <div
+      onClick={onClose}
+      className="fixed w-screen h-screen top-0 bg-neutral-900 bg-opacity-50 flex justify-center items-center"
+    >
       <div className="relative w-[541px] h-[752px] bg-white rounded-3xl flex flex-col items-center">
         <button
           className="absolute top-4 right-4 hover:scale-150"
@@ -84,7 +95,9 @@ export const CarInfo = ({ id, onClose }) => {
               <RentalList
                 data={{
                   rentalConditions: carInfo.rentalConditions,
-                  mileage: carInfo.mileage,
+                  mileage: carInfo.mileage
+                    .toString()
+                    .replace(/\B(?=(\d{3})+(?!\d))/g, ","),
                   rentalPrice: carInfo.rentalPrice,
                 }}
               />

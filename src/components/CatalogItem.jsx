@@ -2,11 +2,17 @@ import { useState } from "react";
 import butonText from "../data/catalog.json";
 import { CarInfo } from "./CarInfo";
 import { createPortal } from "react-dom";
+import hart from "../assets/images/heart.svg";
+import hartActive from "../assets/images/heartActive.svg";
+import { useDispatch, useSelector } from "react-redux";
+import { addFavorites, removeFavorites } from "../redux/favoriteSlice";
 
 const modalRoot = document.querySelector("#modal-root");
 
 export const CatalogItem = (data) => {
   const [showModal, setShowModal] = useState(false);
+  const { favorites } = useSelector((state) => state.favorites);
+  const dispatch = useDispatch();
 
   const {
     id,
@@ -33,7 +39,22 @@ export const CatalogItem = (data) => {
     accessories[0],
   ];
   return (
-    <div className="w-[274px] h-[426px]">
+    <div className="w-[274px] h-[426px] relative">
+      <img
+        src={favorites.some((item) => item.id === id) ? hartActive : hart}
+        w={18}
+        h={18}
+        className="absolute top-[14px] right-[14px] cursor-pointer"
+        onClick={() => {
+          const isFavorite = favorites.some((item) => item.id === id);
+          console.log(isFavorite);
+          if (isFavorite) {
+            dispatch(removeFavorites(id));
+          } else {
+            dispatch(addFavorites(data.data));
+          }
+        }}
+      />
       <div className="w-[270px] h-[268px]">
         <img
           src={img}
@@ -67,7 +88,7 @@ export const CatalogItem = (data) => {
         </div>
         <button
           onClick={() => setShowModal(true)}
-          className="cursor-pointer w-full h-11 flex justify-center py-3 bg-blue-500 rounded-xl items-center text-white text-sm font-semibold manrope leading-tight hover:bg-blue-700 focus:bg-blue-700"
+          className="cursor-pointer w-full h-11 flex justify-center py-3 bg-blue-500 rounded-xl items-center text-white text-sm font-semibold manrope leading-tight hover:bg-blue-700 outline-none"
         >
           {butonText.more}
         </button>
