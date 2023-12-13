@@ -33,7 +33,7 @@ export const CatalogList = () => {
     let newArrey = cars;
     if (filters.brand !== "") {
       newArrey = cars.filter((el) =>
-        el.make.toLowerCase().includes(filters.brand)
+        el.make.toLowerCase().includes(filters.brand.toLowerCase())
       );
       return newArrey;
     } else if (filters.price !== "") {

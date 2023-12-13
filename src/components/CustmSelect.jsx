@@ -1,17 +1,42 @@
+import PropTypes from "prop-types";
 import { useState } from "react";
 import arroy from "../assets/images/arroy.svg";
 import makes from "../data/makes.json";
-import { nanoid } from "nanoid";
+import { CustomSelectContent } from "./CustomSelectContent";
 
-export const CustomSelect = (height = null) => {
-  const [brand, setBrand] = useState("");
+export const CustomSelect = ({
+  label = "Enter the text",
+  data = makes,
+  height = "h-12",
+  weight = "w-[224px]",
+  value,
+  setValue,
+  type,
+}) => {
   const [hiddenOptions, setHiddenOptions] = useState(true);
+
+  const isValuePrice = () => {
+    if (type === "brand") return;
+    else if (!value) {
+      const array = label.split(",");
+      const noValue = [array[0], " ", array[1]];
+      return noValue;
+    } else {
+      const array = label.split(",");
+      const input = `${array[0]} ${value} ${array[1]}`;
+      return input;
+    }
+  };
+
+  const labelBrand = !value ? label : value;
+  let labelPrice = isValuePrice();
+
   return (
     <div
-      className={`relative h-12 w-[224px] bg-slate-50 rounded-[14px] inline-flex items-center justify-between px-4`}
+      className={`relative ${height} ${weight} bg-slate-50 rounded-[14px] inline-flex items-center justify-between px-4`}
     >
       <p className="text-neutral-900 text-lg leading-5 font-medium manrope">
-        {!brand ? "Enter the text" : brand}
+        {type === "brand" ? labelBrand : labelPrice}
       </p>
       <div onClick={() => setHiddenOptions(!hiddenOptions)}>
         <img
@@ -24,26 +49,22 @@ export const CustomSelect = (height = null) => {
         />
       </div>
       {!hiddenOptions && (
-        <div className="absolute top-[110%] left-0 py-[14px] px-[18px] bg-slate-50 rounded-[14px] h-[272px] w-56">
-          <div className="h-[244px] overflow-auto scroll">
-            <ul className="flex flex-col gap-2">
-              {makes.map((el) => (
-                <li
-                  key={nanoid()}
-                  name={el}
-                  onClick={() => {
-                    setBrand(el);
-                    setHiddenOptions(true);
-                  }}
-                  className="cursor-pointer text-neutral-900 text-opacity-40 text-base font-medium manrope leading-tight hover:text-neutral-900 focus:text-neutral-900 active:text-neutral-900 bg-transparent"
-                >
-                  {el}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
+        <CustomSelectContent
+          data={data}
+          setValue={setValue}
+          setHiddenOptions={setHiddenOptions}
+        />
       )}
     </div>
   );
+};
+
+CustomSelect.propTypes = {
+  label: PropTypes.string,
+  data: PropTypes.array,
+  height: PropTypes.string,
+  weight: PropTypes.string,
+  value: PropTypes.string.isRequired,
+  setValue: PropTypes.func.isRequired,
+  type: PropTypes.string.isRequired,
 };
